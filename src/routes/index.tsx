@@ -526,26 +526,33 @@ function TitleBlock({
 }
 
 /* ---------- Gallery ---------- */
+/* ---------- Gallery ---------- */
 function Gallery({ onShowAll }: { onShowAll: () => void }) {
-  return (
-    <div className="mx-auto mt-4 grid max-w-[1280px] grid-cols-2 sm:grid-cols-3 gap-2 px-4 sm:px-6">
-      <div className="col-span-2 sm:col-span-1 sm:row-span-2">
-        <img src={img1} alt="Main" className="h-48 sm:h-full w-full rounded-lg object-cover" />
-      </div>
-      <img src={img2} alt="" className="h-32 sm:h-44 w-full rounded-lg object-cover" />
-      <img src={img3} alt="" className="h-32 sm:h-44 w-full rounded-lg object-cover" />
-      <img src={img4} alt="" className="h-32 sm:h-44 w-full rounded-lg object-cover" />
-      <div className="relative">
-        <img src={img5} alt="" className="h-32 sm:h-44 w-full rounded-lg object-cover" />
-        <button
-          onClick={onShowAll}
-          className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 flex items-center gap-1.5 rounded-md bg-black/80 px-3 py-1.5 text-xs font-medium text-white whitespace-nowrap hover:bg-black"
-        >
-          <Grid3x3 className="h-3.5 w-3.5" /> Show all photos
-        </button>
-      </div>
-    </div>
-  );
+    return (
+        <div className="mx-auto mt-4 grid max-w-[1280px] grid-cols-2 sm:grid-cols-3 gap-2 px-4 sm:px-6">
+            <div className="col-span-2 sm:col-span-1 sm:row-span-2 overflow-hidden rounded-lg">
+                <img src={img1} alt="Main" className="h-48 sm:h-full w-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300" onClick={onShowAll} />
+            </div>
+            {[img2, img3, img4].map((src, i) => (
+                <div key={i} className="overflow-hidden rounded-lg">
+                    <img
+                        src={src} alt={`Property ${i + 2}`}
+                        className="h-32 sm:h-44 w-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                        onClick={onShowAll}
+                    />
+                </div>
+            ))}
+            <div className="relative overflow-hidden rounded-lg">
+                <img src={img5} alt="" className="h-32 sm:h-44 w-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300" onClick={onShowAll} />
+                <button
+                    onClick={onShowAll}
+                    className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 flex items-center gap-1.5 rounded-md bg-black/80 px-3 py-1.5 text-xs font-medium text-white whitespace-nowrap hover:bg-black transition-colors"
+                >
+                    <Grid3x3 className="h-3.5 w-3.5" /> Show all photos
+                </button>
+            </div>
+        </div>
+    );
 }
 
 function StatsCards() {
