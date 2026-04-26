@@ -1,9 +1,9 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  vite: {
-    build: {
-      outDir: "dist",   // force output to dist/
-    },
-  },
+  // Example: React plugin
+  plugins: [],
+  server: {
+    port: 3000
+  }
 });
